@@ -1,94 +1,97 @@
+/* ========== TimeDive Style ========== */
 body {
-  font-family: 'Courier New', monospace;
-  background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
-  color: #f0f0f0;
-  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(180deg, #0f0f0f, #1b1b1b);
+  color: #e0e0e0;
+  padding: 40px 20px;
   text-align: center;
 }
 
 h1 {
   color: #00ffe1;
-  font-size: 2.5em; /* sedikit lebih besar */
+  font-size: 2.5em;
   margin-bottom: 10px;
-  text-shadow: 0 0 10px rgba(0, 255, 225, 0.5); /* efek glow */
+  text-shadow: 0 0 10px rgba(0,255,255,0.4);
 }
 
 p {
-  font-size: 1.2rem; /* sedikit lebih besar */
-  color: #cccccc;
-  margin-bottom: 20px; /* menambahkan margin bottom */
+  font-size: 1rem;
+  color: #aaa;
+  margin: 10px auto;
+  max-width: 600px;
 }
 
 input {
-  padding: 10px;
-  margin: 6px;
-  font-size: 16px;
-  width: 80px;
-  border-radius: 5px;
-  border: 1px solid #555;
+  padding: 12px;
+  margin: 8px;
+  font-size: 18px;
+  width: 100px;
+  border-radius: 6px;
+  border: 1px solid #444;
   background-color: #1f1f1f;
   color: #fff;
   text-align: center;
-  transition: 0.2s ease; /* menambahkan transisi */
+  transition: all 0.2s ease-in-out;
 }
 
 input:focus {
-  border-color: #00ffe1; /* mengubah warna border saat fokus */
-  box-shadow: 0 0 10px rgba(0, 255, 225, 0.5); /* efek glow */
+  border-color: #00ffe1;
+  outline: none;
 }
 
 button {
-  padding: 10px 20px;
+  padding: 12px 24px;
   font-size: 16px;
   background-color: #00ffe1;
   color: #000;
   font-weight: bold;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,255,225,0.2);
+  transition: 0.3s ease;
 }
 
 button:hover {
   background-color: #00ccb8;
-  transform: scale(1.05); /* efek scale */
+  transform: translateY(-1px);
 }
 
 .result {
-  margin-top: 25px;
-  padding: 15px;
-  border-top: 1px solid #333;
-  font-family: monospace;
+  margin-top: 30px;
+  padding: 20px;
+  font-family: 'Courier New', monospace;
+  background: #151515;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: #e0e0e0;
   font-size: 0.95rem;
-  background: #141414;
-  border-radius: 6px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* efek shadow */
+  box-shadow: 0 0 15px rgba(0,255,225,0.05);
 }
 
 .balance {
   font-weight: bold;
-  color: #ffcc00;
+  color: #ffd700;
   display: block;
-  margin-top: 10px;
-  font-size: 11.2rem; /* sedikit lebih besar */
+  margin-top: 12px;
+  font-size: 1.1rem;
 }
 
 footer {
-  margin-top: 40px;
+  margin-top: 50px;
   padding-top: 20px;
   border-top: 1px solid #444;
   font-size: 0.9rem;
-  color: #999;
+  color: #888;
 }
 
 footer a {
   color: #00ffe1;
   text-decoration: none;
-  margin: 0 5px;
-  transition: 0.2s ease; /* menambahkan transisi */
+  margin: 0 6px;
+  font-weight: bold;
 }
 
 footer a:hover {
   text-decoration: underline;
-  color: #00ccb8; /* mengubah warna saat hover */
-}
+  }

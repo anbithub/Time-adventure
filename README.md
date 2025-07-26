@@ -1,2 +1,2 @@
-# Time-adventure
+# TimeDive Explorer
 Traveling through time to find treasure

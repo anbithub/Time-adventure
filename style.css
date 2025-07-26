@@ -1,22 +1,94 @@
-body { font-family: 'Courier New', monospace; background: linear-gradient(to bottom, #0d0d0d, #1a1a1a); color: #f0f0f0; padding: 20px; text-align: center; }
+body {
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+  color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+}
 
-h1 { color: #00ffe1; font-size: 2em; margin-bottom: 10px; }
+h1 {
+  color: #00ffe1;
+  font-size: 2.5em; /* sedikit lebih besar */
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(0, 255, 225, 0.5); /* efek glow */
+}
 
-p { font-size: 1rem; color: #cccccc; }
+p {
+  font-size: 1.2rem; /* sedikit lebih besar */
+  color: #cccccc;
+  margin-bottom: 20px; /* menambahkan margin bottom */
+}
 
-input { padding: 10px; margin: 6px; font-size: 16px; width: 80px; border-radius: 5px; border: 1px solid #555; background-color: #1f1f1f; color: #fff; text-align: center; }
+input {
+  padding: 10px;
+  margin: 6px;
+  font-size: 16px;
+  width: 80px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background-color: #1f1f1f;
+  color: #fff;
+  text-align: center;
+  transition: 0.2s ease; /* menambahkan transisi */
+}
 
-button { padding: 10px 20px; font-size: 16px; background-color: #00ffe1; color: #000; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; transition: 0.2s ease; }
+input:focus {
+  border-color: #00ffe1; /* mengubah warna border saat fokus */
+  box-shadow: 0 0 10px rgba(0, 255, 225, 0.5); /* efek glow */
+}
 
-button:hover { background-color: #00ccb8; }
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #00ffe1;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
 
-.result { margin-top: 25px; padding: 15px; border-top: 1px solid #333; font-family: monospace; font-size: 0.95rem; background: #141414; border-radius: 6px; }
+button:hover {
+  background-color: #00ccb8;
+  transform: scale(1.05); /* efek scale */
+}
 
-.balance { font-weight: bold; color: #ffcc00; display: block; margin-top: 10px; }
+.result {
+  margin-top: 25px;
+  padding: 15px;
+  border-top: 1px solid #333;
+  font-family: monospace;
+  font-size: 0.95rem;
+  background: #141414;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* efek shadow */
+}
 
-footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #444; font-size: 0.9rem; color: #999; }
+.balance {
+  font-weight: bold;
+  color: #ffcc00;
+  display: block;
+  margin-top: 10px;
+  font-size: 11.2rem; /* sedikit lebih besar */
+}
 
-footer a { color: #00ffe1; text-decoration: none; margin: 0 5px; }
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #444;
+  font-size: 0.9rem;
+  color: #999;
+}
 
-footer a:hover { text-decoration: underline; }
+footer a {
+  color: #00ffe1;
+  text-decoration: none;
+  margin: 0 5px;
+  transition: 0.2s ease; /* menambahkan transisi */
+}
 
+footer a:hover {
+  text-decoration: underline;
+  color: #00ccb8; /* mengubah warna saat hover */
+}

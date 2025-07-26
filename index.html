@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TimeDive Explorer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>TimeDive Explorer 🕰️</h1>
+  <p>Cek apakah tanggal lahirmu menyimpan Bitcoin! 🚀</p>
+
+  <div>
+    <input type="number" id="day" placeholder="DD" min="1" max="31">
+    <input type="number" id="month" placeholder="MM" min="1" max="12">
+    <input type="number" id="year" placeholder="YYYY" min="1900" max="2100">
+    <button onclick="checkTimeDive()">🔍 Cek Sekarang</button>
+  </div>
+
+  <div class="result" id="result"></div>
+
+  <footer>
+    <hr>
+    <p>🔗 Follow saya di:</p>
+    <p>
+      <a href="https://twitter.com/USERNAME" target="_blank">Twitter</a> |
+      <a href="https://t.me/USERNAME" target="_blank">Telegram</a>
+    </p>
+    <p>
+      ❤️ Dukung proyek ini:
+      <br>
+      <strong>Donasi BTC:</strong> <span id="btc-address">1YourBitcoinAddressHere</span>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/elliptic@6.5.4/dist/elliptic.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bs58@5.0.0/index.min.js"></script>
+  <script>
+    async function checkTimeDive() {
+      const d = document.getElementById('day').value.padStart(2, '0');
+      const m = document.getElementById('month').value.padStart(2, '0');
+      const y = document.getElementById('year').value;
+      const result = document.getElementById('result');
+
+      if (!d || !m || !y) {
+        result.innerHTML = '⛔ Lengkapi tanggal terlebih dahulu.';
+        return;
+      }
+
+      const dateStr = `${y}-${m}-${d}`;
+      const sha = CryptoJS.SHA256(dateStr).toString();
+
+      const EC = elliptic.ec;
+      const ec = new EC('secp256k1');
+      const key = ec.keyFromPrivate(sha);
+      const pub = key.getPublic();
+
+      const pubKeyHex = '04' + pub.getX().toString('hex') + pub.getY().toString('hex');
+
+      const sha256 = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(pubKeyHex)).toString();
+      const ripemd160 = CryptoJS.RIPEMD160(CryptoJS.enc.Hex.parse(sha256)).toString();
+      const versionedPayload = '00' + ripemd160;
+
+      const checksumFull = CryptoJS.SHA256(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(versionedPayload))).toString();
+      const checksum = checksumFull.substring(0, 8);
+      const addressHex = versionedPayload + checksum;
+      const address = bs58.encode(hexToBytes(addressHex));
+
+      const wifPayload = '80' + sha;
+      const wifChecksum = CryptoJS.SHA256(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(wifPayload))).toString().substring(0, 8);
+      const wifFull = wifPayload + wifChecksum;
+      const wif = bs58.encode(hexToBytes(wifFull));
+
+      let balanceStr = '❓ Sedang mengecek saldo...';
+
+      result.innerHTML = `
+        📅 Tanggal: ${d}-${m}-${y}<br>
+        🔐 WIF: ${wif}<br>
+        📬 Address: ${address}<br>
+        <span class="balance">${balanceStr}</span>
+      `;
+
+      // Cek saldo
+      try {
+        const res = await fetch(`https://blockstream.info/api/address/${address}`);
+        const data = await res.json();
+        const funded = data.chain_stats.funded_txo_sum;
+        const spent = data.chain_stats.spent_txo_sum;
+        const balance = (funded - spent) / 100000000;
+
+        if (balance > 0) {
+          balanceStr = `💰 Saldo: ${balance} BTC 🎉`;
+        } else {
+          balanceStr = `💤 Address ini kosong.`;
+        }
+      } catch (e) {
+        balanceStr = '⚠️ Gagal cek saldo (koneksi atau limit API).';
+      }
+
+      document.querySelector('.balance').innerText = balanceStr;
+    }
+
+    function hexToBytes(hex) {
+      const bytes = [];
+      for (let c = 0; c < hex.length; c += 2) {
+        bytes.push(parseInt(hex.substr(c, 2), 16));
+      }
+      return bytes;
+    }
+  </script>
+</body>
+</html>

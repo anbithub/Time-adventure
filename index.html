@@ -37,13 +37,13 @@
 <script src="https://cdn.jsdelivr.net/npm/elliptic@6.5.4/dist/elliptic.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bs58@5.0.0/index.min.js"></script>
 <script>
-async function checkTimeDive() {
+async function checkTimeDive() 
   const dRaw = document.getElementById('day').value;
   const mRaw = document.getElementById('month').value;
   const y = document.getElementById('year').value;
 
-  const d = dRaw ? dRaw.padStart(2, '0') : '00';
-  const m = mRaw ? mRaw.padStart(2, '0') : '00';
+  const d = dRaw ? dRaw.toString().padStart(2, '0') : '00';
+  const m = mRaw ? mRaw.toString().padStart(2, '0') : '00';
   const result = document.getElementById('result');
 
   if (!dRaw || !mRaw || !y) {
@@ -112,4 +112,4 @@ function hexToBytes(hex) {
 }
 </script>
 </body>
-</html>
+  </html>
